@@ -1,0 +1,129 @@
+1. Give a particular sequence of inpatient charges in 2015 
+
+SELECT * FROM `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+ORDER BY provider_state
+provider_id	provider_name	provider_street_address	provider_city	provider_state	provider_zipcode	drg_definition	hospital_referral_region_description	total_discharges	average_covered_charges	average_total_payments	average_medicare_payments
+20001	PROVIDENCE ALASKA MEDICAL CENTER	BOX 196604	ANCHORAGE	AK	99508	003 - ECMO OR TRACH W MV >96 HRS OR PDX EXC FACE, MOUTH & NECK W MAJ O.R.	AK - Anchorage	12	486576.67	130684.17	128857.67
+20001	PROVIDENCE ALASKA MEDICAL CENTER	BOX 196604	ANCHORAGE	AK	99508	054 - NERVOUS SYSTEM NEOPLASMS W MCC	AK - Anchorage	12	59441.75	12498.33	11252.5
+20001	PROVIDENCE ALASKA MEDICAL CENTER	BOX 196604	ANCHORAGE	AK	99508	057 - DEGENERATIVE NERVOUS SYSTEM DISORDERS W/O MCC	AK - Anchorage	11	38041.64	9544	8510.36
+20001	PROVIDENCE ALASKA MEDICAL CENTER	BOX 196604	ANCHORAGE	AK	99508	064 - INTRACRANIAL HEMORRHAGE OR CEREBRAL INFARCTION W MCC	AK - Anchorage	49	98836.49	18283.29	16917.22
+20001	PROVIDENCE ALASKA MEDICAL CENTER	BOX 196604	ANCHORAGE	AK	99508	065 - INTRACRANIAL HEMORRHAGE OR CEREBRAL INFARCTION W CC OR TPA IN 24 HRS	AK - Anchorage	72	47740.08	11072.33	8357.04
+20001	PROVIDENCE ALASKA MEDICAL CENTER	BOX 196604	ANCHORAGE	AK	99508	066 - INTRACRANIAL HEMORRHAGE OR CEREBRAL INFARCTION W/O CC/MCC	AK - Anchorage	24	34840.29	7899.42	5950.63
+
+2.
+SELECT MAX(provider_name)
+FROM `bigquery-public-data.medicare.inpatient_charges_2011` 	
+
+ZUNI COMPREHENSIVE COMMUNITY HEALTH CENTER
+
+3.
+SELECT COUNT(provider_id)
+FROM `bigquery-public-data.cms_medicare.outpatient_charges_2011` 
+GROUP BY provider_city
+
+Row	f0_
+1	18
+2	52
+3	24
+4	16
+5	15
+6	10
+7	7
+8	15
+
+4. 
+SELECT MAX(total_discharges)
+FROM `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+
+Row	f0_	
+1	3990
+
+5. LIMIT 
+SELECT *  FROM `bigquery-public-data.austin_crime.crime` LIMIT 1000
+
+Row	unique_key	address	census_tract	clearance_date	clearance_status	council_district_code	description	district	latitude	longitude	location	location_description	primary_type	timestamp	x_coordinate	y_coordinate	year	zipcode
+1	20165002898	Austin, TX	null	2016-03-14 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-19 00:00:00 UTC	null	null	2016	null
+2	20165004843	Austin, TX	null	2016-03-31 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-25 00:00:00 UTC	null	null	2016	null
+3	2016250988	Austin, TX	null	2016-09-16 00:00:00 UTC	Not cleared	null	RAPE	UK	null	null	null	null	Rape	2016-01-25 00:00:00 UTC	null	null	2016	null
+4	20165003839	Austin, TX	null	2016-02-09 00:00:00 UTC	Not cleared	null	AGG RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-01-27 00:00:00 UTC	null	null	2016	null
+5	2016321746	Austin, TX	null	2016-03-22 00:00:00 UTC	Not cleared	null	RAPE OF A CHILD	UK	null	null	null	null	Rape	2016-02-01 00:00:00 UTC	null	null	2016	null
+
+6. JOINT
+select fertility1.country_name,fertility2.crude_birth_rate
+from `bigquery-public-data.census_bureau_international.age_specific_fertility_rates`
+as fertility1
+join `bigquery-public-data.census_bureau_international.birth_death_growth_rates` as fertility2
+ON (fertility1.country_name=fertility2.country_name)
+ 
+Rowcountry_namecrude_birth_rate1
+Aruba
+18.47
+2
+Aruba
+18.89
+3
+Aruba
+19.25
+4
+Aruba
+19.54
+5
+Aruba
+19.7
+6
+Aruba
+19.75
+7
+Aruba
+19.74
+
+7. SELECT country_name, country_code
+FROM `bigquery-public-data.world_bank_health_population.health_nutrition_population`
+
+Rowcountry_namecountry_code1
+Mexico
+MEX
+2
+Mexico
+MEX
+3
+Mexico
+MEX
+4
+Mexico
+MEX
+5
+Mexico
+MEX
+6
+Mexico
+MEX
+7
+Mexico
+MEX
+8
+Mexico
+MEX
+9
+Mexico
+MEX
+10
+Mexico
+
+8. SELECT COUNT(provider_id)
+FROM `bigquery-public-data.cms_medicare.outpatient_charges_2011` 
+GROUP BY provider_city
+Row	F0
+1	18
+2	52
+3	24
+4	16
+5	15
+6	7
+7	10
+8	15
+9	47
+10	18
+
+
+
